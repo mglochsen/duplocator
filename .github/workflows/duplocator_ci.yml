@@ -12,7 +12,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 2.2.108
+        dotnet-version: 3.1.100
     - name: Build duplocator
       run: dotnet build src/Duplocator/Duplocator.csproj --configuration Release
     - name: Build duplocator CLI
