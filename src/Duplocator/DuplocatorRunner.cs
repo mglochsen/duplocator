@@ -7,6 +7,9 @@ using Duplocator.Services;
 
 namespace Duplocator
 {
+    /// <summary>
+    /// Finds duplicates using file size and hash checks.
+    /// </summary>
     public class DuplocatorRunner
     {
         private readonly FileSizeDuplocator _fileSizeDuplocator;
@@ -27,6 +30,9 @@ namespace Duplocator
             _hashDuplocator = hashDuplocator;
         }
 
+        /// <summary>
+        /// Get the duplicates using file size and hash checks.
+        /// </summary>
         public RunnerResult GetDuplicates(RunnerOptions options)
         {
             var duplocatorFuncs = GetDuplocatorFuncs().ToArray();
