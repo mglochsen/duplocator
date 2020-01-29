@@ -1,7 +1,7 @@
 name: duplocator publish
-on:
-  push:
-    branches: master
+on: [push]
+  #push:
+    #branches: master
 
 jobs:
   publish:
