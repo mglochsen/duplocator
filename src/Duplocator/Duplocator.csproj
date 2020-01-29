@@ -5,6 +5,7 @@
     <PackageId>duplocator</PackageId>
     <Description>Finds file duplicates using file size and hash comparisions</Description>
     <Product>duplocator</Product>
+    <PackageTags>duplicates duplicate</PackageTags>
   </PropertyGroup>
 
 </Project>
