@@ -6,8 +6,12 @@ using System.Security.Cryptography;
 
 namespace Duplocator.Services
 {
+    /// <summary>
+    /// Implements a file service that uses the <see cref="System.IO" /> classes. 
+    /// </summary>
     public class FileService : IFileService
     {
+        /// <inheritdoc/>
         public IEnumerable<string> GetFilesInFolder(string path)
         {
             foreach (var filePath in Directory.GetDirectories(path).SelectMany(GetFilesInFolder))
@@ -21,11 +25,13 @@ namespace Duplocator.Services
             }
         }
 
+        /// <inheritdoc/>
         public long GetFileSize(string filePath)
         {
             return new FileInfo(filePath).Length;
         }
 
+        /// <inheritdoc/>
         public string GetFileHash(string filePath, uint? maxByteLength = null)
         {
             using (var sha1 = SHA1.Create())
