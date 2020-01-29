@@ -2,11 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <PackageId>duplocator</PackageId>
+    <Description>Finds file duplicates using file size and hash comparisions</Description>
+    <Product>duplocator</Product>
+    <PackageTags>duplicates duplicate</PackageTags>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs" Link="SharedAssemblyInfo.cs" />
-  </ItemGroup>
 
 </Project>

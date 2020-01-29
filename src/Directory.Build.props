@@ -1,0 +1,9 @@
+<Project>
+	<PropertyGroup>
+		<Version>0.9.9</Version>
+		<AssemblyVersion>0.9.9</AssemblyVersion>
+        <Authors>Matthias Glauch</Authors>
+        <Owners>Matthias Glauch</Owners>
+        <Copyright>Copyright (C) 2020 Matthias Glauch</Copyright>
+	</PropertyGroup>
+</Project>
