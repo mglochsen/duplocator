@@ -1,9 +1,11 @@
 <Project>
 	<PropertyGroup>
-		<Version>1.0.1</Version>
-		<AssemblyVersion>1.0.1</AssemblyVersion>
+		<Version>1.0.2</Version>
+		<AssemblyVersion>1.0.2</AssemblyVersion>
         <Authors>Matthias Glauch</Authors>
         <Owners>Matthias Glauch</Owners>
         <Copyright>Copyright (C) 2020 Matthias Glauch</Copyright>
+		<PackageProjectUrl>https://github.com/mglochsen/duplocator</PackageProjectUrl>
+		<PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
 	</PropertyGroup>
 </Project>
