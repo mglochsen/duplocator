@@ -1,7 +1,8 @@
-name: duplocator publish
-on: [push]
-  #push:
-    #branches: master
+name: duplocator publish release
+
+on:
+  push:
+    branches-ignore: master
 
 jobs:
   publish:

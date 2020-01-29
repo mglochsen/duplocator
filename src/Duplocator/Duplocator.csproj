@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>duplocator</PackageId>
+    <Description>Finds file duplicates using file size and hash comparisions</Description>
     <Product>duplocator</Product>
   </PropertyGroup>
 
