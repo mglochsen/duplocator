@@ -3,17 +3,19 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Duplocator.Data;
 
-namespace Duplocator
+namespace Duplocator.Duplocators
 {
     public abstract class KeyCompareDuplocator
     {
-        protected IEnumerable<string[]> GetDuplicates<TKey>(IEnumerable<string[]> filePathGroups, Func<string, TKey> keyFunc)
+        protected IEnumerable<DuplicateGroup> GetDuplicates<TKey>(IEnumerable<DuplicateGroup> duplicateGroups, Func<string, TKey> keyFunc)
         {
-            return filePathGroups
+            return duplicateGroups
                 .AsParallel()
-                .SelectMany(filePaths => FindDuplicates(filePaths, keyFunc))
-                .Where(duplicates => duplicates.Length > 1)
+                .SelectMany(group => FindDuplicates(group.Duplicates, keyFunc))
+                .Select(duplicates => new DuplicateGroup(duplicates))
+                .Where(group => group.ContainsDuplicates)
                 .AsEnumerable();
         }
 

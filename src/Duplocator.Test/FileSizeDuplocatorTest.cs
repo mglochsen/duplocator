@@ -1,5 +1,8 @@
 using System.Linq;
 using System.Text.RegularExpressions;
+using Duplocator.Data;
+using Duplocator.Duplocators;
+using Duplocator.Services;
 using FluentAssertions;
 using Moq;
 using Xunit;
@@ -17,7 +20,7 @@ namespace Duplocator.Test
             var target = CreateDuplocator(fileService);
 
             // Act
-            var duplicates = target.GetDuplicates(new [] { filePaths }).ToArray();
+            var duplicates = target.GetDuplicates(new [] { new DuplicateGroup(filePaths) }).ToArray();
 
             // Assert
             duplicates.Should().BeEmpty();
@@ -32,11 +35,11 @@ namespace Duplocator.Test
             var target = CreateDuplocator(fileService);
 
             // Act
-            var result = target.GetDuplicates(new [] { filePaths }).ToArray();
+            var result = target.GetDuplicates(new [] { new DuplicateGroup(filePaths) }).ToArray();
 
             // Assert
             result.Should().HaveCount(1);
-            result[0].Should().HaveCount(filePaths.Length);
+            result[0].TotalDuplicates.Should().Be(filePaths.Length);
         }
 
         [Fact]
@@ -56,12 +59,12 @@ namespace Duplocator.Test
             var target = CreateDuplocator(fileService);
 
             // Act
-            var result = target.GetDuplicates(new [] { filePaths }).ToArray();
+            var result = target.GetDuplicates(new [] { new DuplicateGroup(filePaths) }).ToArray();
 
             // Assert
             result.Should().HaveCount(2);
-            result.Should().Contain(files => files.Count() == 3 && files.Contains(filePaths[0]) && files.Contains(filePaths[1]) && files.Contains(filePaths[2]));
-            result.Should().Contain(files => files.Count() == 2 && files.Contains(filePaths[3]) && files.Contains(filePaths[4]));
+            result.Should().Contain(group => group.TotalDuplicates == 3 && group.Duplicates.Contains(filePaths[0]) && group.Duplicates.Contains(filePaths[1]) && group.Duplicates.Contains(filePaths[2]));
+            result.Should().Contain(group => group.TotalDuplicates == 2 && group.Duplicates.Contains(filePaths[3]) && group.Duplicates.Contains(filePaths[4]));
         }
 
         private static FileSizeDuplocator CreateDuplocator(IFileService fileService)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using CommandLine;
+using Duplocator.Data;
 
 namespace Duplocator.CLI
 {
@@ -15,9 +16,10 @@ namespace Duplocator.CLI
 
         private static void Run(Options options)
         {
-            var duplicates = new Locator().GetDuplicates(options.FolderPath).ToArray();
+            var runnerOptions = new RunnerOptions(options.FolderPath);
+            var runnerResult = new DuplocatorRunner().GetDuplicates(runnerOptions);
 
-            Console.WriteLine($"Found {duplicates.SelectMany(_ => _).Count()} duplicates in {duplicates.Count()} groups.");
+            Console.WriteLine($"Found {runnerResult.TotalDuplicates} duplicates in {runnerResult.DuplicateGroups.Count()} groups.");
         }
     }
 }

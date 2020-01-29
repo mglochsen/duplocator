@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Duplocator.Data;
+using Duplocator.Services;
 
-namespace Duplocator
+namespace Duplocator.Duplocators
 {
     public class FileSizeDuplocator : KeyCompareDuplocator
     {
@@ -11,9 +13,9 @@ namespace Duplocator
             _fileService = fileService;
         }
 
-        public IEnumerable<string[]> GetDuplicates(IEnumerable<string[]> filePathGroups)
+        public IEnumerable<DuplicateGroup> GetDuplicates(IEnumerable<DuplicateGroup> duplicateGroups)
         {
-            return GetDuplicates(filePathGroups, _fileService.GetFileSize);
+            return GetDuplicates(duplicateGroups, _fileService.GetFileSize);
         }
     }
 }

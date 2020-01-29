@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Duplocator
+namespace Duplocator.Services
 {
     public interface IFileService
     {
