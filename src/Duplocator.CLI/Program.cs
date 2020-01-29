@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using System.Text;
 using CommandLine;
 using Duplocator.Data;
 
@@ -20,6 +22,12 @@ namespace Duplocator.CLI
             var runnerResult = new DuplocatorRunner().GetDuplicates(runnerOptions);
 
             Console.WriteLine($"Found {runnerResult.TotalDuplicates} duplicates in {runnerResult.DuplicateGroups.Count()} groups.");
+
+            if (!string.IsNullOrWhiteSpace(options.ExportFileName))
+            {
+                var csvContent = string.Join(Environment.NewLine, runnerResult.DuplicateGroups.Select(group => string.Join(",", group.Duplicates.OrderBy(_ => _))));
+                File.WriteAllText(options.ExportFileName, csvContent);
+            }
         }
     }
 }
