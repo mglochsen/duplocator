@@ -24,13 +24,14 @@ namespace Duplocator.Duplocators
             var duplicateGroups = new ConcurrentDictionary<TKey, ConcurrentBag<string>>();
             var syncObject = new object();
 
-            Parallel.ForEach(filePaths, filePath => {
+            Parallel.ForEach(filePaths, filePath =>
+            {
                 var key = keyFunc(filePath);
 
                 duplicateGroups.AddOrUpdate(
                     key,
                     new ConcurrentBag<string> { filePath },
-                    (k, list) => 
+                    (k, list) =>
                     {
                         lock (syncObject)
                         {

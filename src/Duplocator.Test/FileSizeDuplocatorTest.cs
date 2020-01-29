@@ -20,7 +20,7 @@ namespace Duplocator.Test
             var target = CreateDuplocator(fileService);
 
             // Act
-            var duplicates = target.GetDuplicates(new [] { new DuplicateGroup(filePaths) }).ToArray();
+            var duplicates = target.GetDuplicates(new[] { new DuplicateGroup(filePaths) }).ToArray();
 
             // Assert
             duplicates.Should().BeEmpty();
@@ -35,7 +35,7 @@ namespace Duplocator.Test
             var target = CreateDuplocator(fileService);
 
             // Act
-            var result = target.GetDuplicates(new [] { new DuplicateGroup(filePaths) }).ToArray();
+            var result = target.GetDuplicates(new[] { new DuplicateGroup(filePaths) }).ToArray();
 
             // Assert
             result.Should().HaveCount(1);
@@ -46,7 +46,7 @@ namespace Duplocator.Test
         public void GetDuplicates_WithDuplicates_ReturnsDuplicates()
         {
             // Arrange
-            var filePaths = new []
+            var filePaths = new[]
             {
                 "firstfile1",
                 "secondfile1",
@@ -59,7 +59,7 @@ namespace Duplocator.Test
             var target = CreateDuplocator(fileService);
 
             // Act
-            var result = target.GetDuplicates(new [] { new DuplicateGroup(filePaths) }).ToArray();
+            var result = target.GetDuplicates(new[] { new DuplicateGroup(filePaths) }).ToArray();
 
             // Assert
             result.Should().HaveCount(2);
@@ -80,8 +80,9 @@ namespace Duplocator.Test
             var fileServiceMock = new Mock<IFileService>();
             fileServiceMock
                 .Setup(service => service.GetFileSize(It.IsAny<string>()))
-                .Returns(() => {
-                    lock(syncObject)
+                .Returns(() =>
+                {
+                    lock (syncObject)
                     {
                         return ++count;
                     }

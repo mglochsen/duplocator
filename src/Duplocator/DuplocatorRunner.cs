@@ -30,8 +30,7 @@ namespace Duplocator
         public RunnerResult GetDuplicates(RunnerOptions options)
         {
             var duplocatorFuncs = GetDuplocatorFuncs().ToArray();
-            var duplicateGroups = GetInitialDuplicateGroup(options.FolderPath);
-            
+            var duplicateGroups = GetInitialDuplicateGroups(options.FolderPath);
 
             foreach (var duplocatorFunc in duplocatorFuncs)
             {
@@ -48,10 +47,10 @@ namespace Duplocator
             yield return filePathGroups => _hashDuplocator.GetDuplicates(filePathGroups);
         }
 
-        private DuplicateGroup[] GetInitialDuplicateGroup(string folderPath)
+        private DuplicateGroup[] GetInitialDuplicateGroups(string folderPath)
         {
             var filePaths = _fileService.GetFilesInFolder(folderPath).ToArray();
-            return new [] { new DuplicateGroup(filePaths) };
+            return new[] { new DuplicateGroup(filePaths) };
         }
     }
 }
