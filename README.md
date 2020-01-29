@@ -1,2 +1,2 @@
 # duplocator
-Finds and optionally removes file duplicates
+Finds file duplicates using file size and hash comparisions
