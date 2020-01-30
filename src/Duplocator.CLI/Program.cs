@@ -19,7 +19,7 @@ namespace Duplocator.CLI
             var runnerOptions = new RunnerOptions(options.FolderPath);
             var runnerResult = new DuplocatorRunner().GetDuplicates(runnerOptions);
 
-            Console.WriteLine($"Found {runnerResult.TotalDuplicates} duplicates in {runnerResult.DuplicateGroups.Count()} groups.");
+            Console.WriteLine($"Found {runnerResult.TotalDuplicates} duplicates in {runnerResult.DuplicateGroups.Count()} groups. Elapsed time: {runnerResult.ElapsedTime.TotalSeconds:F1}s");
         }
     }
 }

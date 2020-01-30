@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,15 +13,21 @@ namespace Duplocator.Data
         /// Creates a new instance of the <see cref="RunnerResult" /> class.
         /// </summary>
         /// <param name="duplicateGroups">The groups of duplicates.</param>
-        public RunnerResult(DuplicateGroup[] duplicateGroups)
+        public RunnerResult(DuplicateGroup[] duplicateGroups, TimeSpan elapsedTime)
         {
             DuplicateGroups = duplicateGroups;
+            ElapsedTime = elapsedTime;
         }
 
         /// <summary>
         /// Gets the groups with their duplicates.
         /// </summary>
         public DuplicateGroup[] DuplicateGroups { get; }
+
+        /// <summary>
+        /// Gets the elapsed time.
+        /// </summary>
+        public TimeSpan ElapsedTime { get; }
 
         /// <summary>
         /// Gets the total number of duplicates in all groups.

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Duplocator.Data;
 using Duplocator.Duplocators;
@@ -35,6 +36,8 @@ namespace Duplocator
         /// </summary>
         public RunnerResult GetDuplicates(RunnerOptions options)
         {
+            var stopWatch = Stopwatch.StartNew();
+
             var duplocatorFuncs = GetDuplocatorFuncs().ToArray();
             var duplicateGroups = GetInitialDuplicateGroups(options.FolderPath);
 
@@ -43,7 +46,7 @@ namespace Duplocator
                 duplicateGroups = duplocatorFunc(duplicateGroups).ToArray();
             }
 
-            return new RunnerResult(duplicateGroups);
+            return new RunnerResult(duplicateGroups, stopWatch.Elapsed);
         }
 
         private IEnumerable<Func<IEnumerable<DuplicateGroup>, IEnumerable<DuplicateGroup>>> GetDuplocatorFuncs()
