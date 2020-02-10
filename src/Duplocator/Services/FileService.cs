@@ -14,15 +14,7 @@ namespace Duplocator.Services
         /// <inheritdoc/>
         public IEnumerable<string> GetFilesInFolder(string path)
         {
-            foreach (var filePath in Directory.GetDirectories(path).SelectMany(GetFilesInFolder))
-            {
-                yield return filePath;
-            }
-
-            foreach (var filePath in Directory.GetFiles(path))
-            {
-                yield return filePath;
-            }
+            return Directory.EnumerateFiles(path, "*.*", SearchOption.AllDirectories);
         }
 
         /// <inheritdoc/>
