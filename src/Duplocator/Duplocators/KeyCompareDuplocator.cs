@@ -9,11 +9,17 @@ namespace Duplocator.Duplocators
 {
     public abstract class KeyCompareDuplocator
     {
+        [Obsolete("Use method for single group instead.")]
         protected IEnumerable<DuplicateGroup> GetDuplicates<TKey>(IEnumerable<DuplicateGroup> duplicateGroups, Func<string, TKey> keyFunc)
         {
             return duplicateGroups
                 .AsParallel()
-                .SelectMany(group => FindDuplicates(group.Duplicates, keyFunc))
+                .SelectMany(group => GetDuplicates(group, keyFunc));
+        }
+
+        protected IEnumerable<DuplicateGroup> GetDuplicates<TKey>(DuplicateGroup duplicateGroup, Func<string, TKey> keyFunc)
+        {
+            return FindDuplicates(duplicateGroup.Duplicates, keyFunc)
                 .Select(duplicates => new DuplicateGroup(duplicates))
                 .Where(group => group.ContainsDuplicates)
                 .AsEnumerable();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Duplocator.Data;
 using Duplocator.Services;
@@ -16,6 +17,7 @@ namespace Duplocator.Duplocators
             _fileService = fileService;
         }
 
+        [Obsolete("Use method for single group instead.")]
         /// <summary>
         /// Get duplicates by elements file size.
         /// </summary>
@@ -24,6 +26,16 @@ namespace Duplocator.Duplocators
         public IEnumerable<DuplicateGroup> GetDuplicates(IEnumerable<DuplicateGroup> duplicateGroups)
         {
             return GetDuplicates(duplicateGroups, _fileService.GetFileSize);
+        }
+
+        /// <summary>
+        /// Get duplicates by elements file size.
+        /// </summary>
+        /// <param name="duplicateGroup">The group of elements to check.</param>
+        /// <returns>The groups of duplicates that where found.</returns>
+        public IEnumerable<DuplicateGroup> GetDuplicates(DuplicateGroup duplicateGroup)
+        {
+            return GetDuplicates(duplicateGroup, _fileService.GetFileSize);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Duplocator.Test
             var target = CreateDuplocator(fileServiceMock.Object);
 
             // Act
-            target.GetDuplicates(new[] { new DuplicateGroup(filePaths) }, maxByteLength).ToArray();
+            target.GetDuplicates(new DuplicateGroup(filePaths), maxByteLength).ToArray();
 
             // Assert
             fileServiceMock.Verify(service => service.GetFileHash(filePath, maxByteLength), Times.Once());
@@ -39,7 +39,7 @@ namespace Duplocator.Test
             var target = CreateDuplocator(fileService);
 
             // Act
-            var duplicates = target.GetDuplicates(new[] { new DuplicateGroup(filePaths) }).ToArray();
+            var duplicates = target.GetDuplicates(new DuplicateGroup(filePaths)).ToArray();
 
             // Assert
             duplicates.Should().BeEmpty();
@@ -54,7 +54,7 @@ namespace Duplocator.Test
             var target = CreateDuplocator(fileService);
 
             // Act
-            var result = target.GetDuplicates(new[] { new DuplicateGroup(filePaths) }).ToArray();
+            var result = target.GetDuplicates(new DuplicateGroup(filePaths)).ToArray();
 
             // Assert
             result.Should().HaveCount(1);
@@ -78,7 +78,7 @@ namespace Duplocator.Test
             var target = CreateDuplocator(fileService);
 
             // Act
-            var result = target.GetDuplicates(new[] { new DuplicateGroup(filePaths) }).ToArray();
+            var result = target.GetDuplicates(new DuplicateGroup(filePaths)).ToArray();
 
             // Assert
             result.Should().HaveCount(2);

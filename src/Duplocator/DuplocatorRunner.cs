@@ -39,27 +39,31 @@ namespace Duplocator
             var stopWatch = Stopwatch.StartNew();
 
             var duplocatorFuncs = GetDuplocatorFuncs().ToArray();
-            var duplicateGroups = GetInitialDuplicateGroups(options.FolderPath);
+            var initialGroup = GetInitialDuplicateGroup(options.FolderPath);
+            var duplicateGroups = new [] { initialGroup };
 
             foreach (var duplocatorFunc in duplocatorFuncs)
             {
-                duplicateGroups = duplocatorFunc(duplicateGroups).ToArray();
+                duplicateGroups = duplicateGroups
+                    .AsParallel()
+                    .SelectMany(duplicateGroup => duplocatorFunc(duplicateGroup))
+                    .ToArray();
             }
 
             return new RunnerResult(duplicateGroups, stopWatch.Elapsed);
         }
 
-        private IEnumerable<Func<IEnumerable<DuplicateGroup>, IEnumerable<DuplicateGroup>>> GetDuplocatorFuncs()
+        private IEnumerable<Func<DuplicateGroup, IEnumerable<DuplicateGroup>>> GetDuplocatorFuncs()
         {
             yield return filePathGroups => _fileSizeDuplocator.GetDuplicates(filePathGroups);
             yield return filePathGroups => _hashDuplocator.GetDuplicates(filePathGroups, 1024);
             yield return filePathGroups => _hashDuplocator.GetDuplicates(filePathGroups);
         }
 
-        private DuplicateGroup[] GetInitialDuplicateGroups(string folderPath)
+        private DuplicateGroup GetInitialDuplicateGroup(string folderPath)
         {
             var filePaths = _fileService.GetFilesInFolder(folderPath).ToArray();
-            return new[] { new DuplicateGroup(filePaths) };
+            return new DuplicateGroup(filePaths);
         }
     }
 }
