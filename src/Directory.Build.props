@@ -1,7 +1,7 @@
 <Project>
 	<PropertyGroup>
-		<Version>1.0.2</Version>
-		<AssemblyVersion>1.0.2</AssemblyVersion>
+		<Version>1.1.0</Version>
+		<AssemblyVersion>1.1.0</AssemblyVersion>
         <Authors>Matthias Glauch</Authors>
         <Owners>Matthias Glauch</Owners>
         <Copyright>Copyright (C) 2020 Matthias Glauch</Copyright>
