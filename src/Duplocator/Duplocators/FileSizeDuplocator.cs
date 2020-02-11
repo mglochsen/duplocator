@@ -8,7 +8,7 @@ namespace Duplocator.Duplocators
     /// <summary>
     /// Get duplicates by elements file size.
     /// </summary>
-    public class FileSizeDuplocator : KeyCompareDuplocator
+    public class FileSizeDuplocator : KeyCompareDuplocator, IFileSizeDuplocator
     {
         private readonly IFileService _fileService;
 
@@ -28,11 +28,7 @@ namespace Duplocator.Duplocators
             return GetDuplicates(duplicateGroups, _fileService.GetFileSize);
         }
 
-        /// <summary>
-        /// Get duplicates by elements file size.
-        /// </summary>
-        /// <param name="duplicateGroup">The group of elements to check.</param>
-        /// <returns>The groups of duplicates that where found.</returns>
+        /// <inheritdoc />
         public IEnumerable<DuplicateGroup> GetDuplicates(DuplicateGroup duplicateGroup)
         {
             return GetDuplicates(duplicateGroup, _fileService.GetFileSize);

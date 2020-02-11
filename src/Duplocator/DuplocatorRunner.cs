@@ -13,8 +13,8 @@ namespace Duplocator
     /// </summary>
     public class DuplocatorRunner
     {
-        private readonly FileSizeDuplocator _fileSizeDuplocator;
-        private readonly HashDuplocator _hashDuplocator;
+        private readonly IFileSizeDuplocator _fileSizeDuplocator;
+        private readonly IHashDuplocator _hashDuplocator;
         private readonly IFileService _fileService;
 
         public DuplocatorRunner()
@@ -24,7 +24,7 @@ namespace Duplocator
             _hashDuplocator = new HashDuplocator(_fileService);
         }
 
-        public DuplocatorRunner(IFileService fileService, FileSizeDuplocator fileSizeDuplocator, HashDuplocator hashDuplocator)
+        public DuplocatorRunner(IFileService fileService, IFileSizeDuplocator fileSizeDuplocator, IHashDuplocator hashDuplocator)
         {
             _fileService = fileService;
             _fileSizeDuplocator = fileSizeDuplocator;
