@@ -3,17 +3,17 @@ name: duplocator release
 on:
   push:
     tags:
-      - "v*"
+      - v*
 
 jobs:
   tagged-release:
-    name: "Tagged Release"
-    runs-on: "ubuntu-latest"
+    name: Tagged Release
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - uses: marvinpinto/action-automatic-releases@v0.3.0
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: true
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: false
           files: |
             *.nupkg
