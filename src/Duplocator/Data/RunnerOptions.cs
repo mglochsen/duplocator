@@ -8,14 +8,14 @@ namespace Duplocator.Data
         /// <summary>
         /// Creates a new instance of the <see cref="RunnerOptions" /> class.
         /// </summary>
-        /// <param name="folderPath">The folder path to preocess.</param>
+        /// <param name="folderPath">The folder path to process.</param>
         public RunnerOptions(string folderPath)
         {
             FolderPath = folderPath;
         }
 
         /// <summary>
-        /// Gets the folder path to preocess.
+        /// Gets the folder path to process.
         /// </summary>
         public string FolderPath { get; }
     }
