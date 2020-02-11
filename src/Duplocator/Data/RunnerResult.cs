@@ -13,6 +13,7 @@ namespace Duplocator.Data
         /// Creates a new instance of the <see cref="RunnerResult" /> class.
         /// </summary>
         /// <param name="duplicateGroups">The groups of duplicates.</param>
+        /// <param name="elapsedTime">The elapsed time.</param>
         public RunnerResult(DuplicateGroup[] duplicateGroups, TimeSpan elapsedTime)
         {
             DuplicateGroups = duplicateGroups;
@@ -22,7 +23,7 @@ namespace Duplocator.Data
         /// <summary>
         /// Gets the groups with their duplicates.
         /// </summary>
-        public DuplicateGroup[] DuplicateGroups { get; }
+        public IReadOnlyCollection<DuplicateGroup> DuplicateGroups { get; }
 
         /// <summary>
         /// Gets the elapsed time.

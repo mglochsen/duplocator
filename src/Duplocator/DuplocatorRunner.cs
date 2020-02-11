@@ -36,6 +36,11 @@ namespace Duplocator
         /// </summary>
         public RunnerResult GetDuplicates(RunnerOptions options)
         {
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+
             var stopWatch = Stopwatch.StartNew();
 
             var duplocatorFuncs = GetDuplocatorFuncs().ToArray();
