@@ -1,4 +1,4 @@
-name: duplocator publish
+name: duplocator publish and release
 
 on:
   push:
@@ -22,3 +22,10 @@ jobs:
           VERSION_REGEX: <Version>(.*)<\/Version>
           TAG_COMMIT: true
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      - name: Release duplocator
+        uses: marvinpinto/action-automatic-releases@v0.3.0
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: false
+          files: |
+            **/*.nupkg
