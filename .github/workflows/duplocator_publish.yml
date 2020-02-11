@@ -1,4 +1,4 @@
-name: duplocator publish release
+name: duplocator publish
 
 on:
   push:
