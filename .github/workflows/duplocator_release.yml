@@ -1,0 +1,16 @@
+name: duplocator release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  release:
+    name: Release at GitHub
+    runs-on: ubuntu-latest
+    steps:
+      - uses: marvinpinto/action-automatic-releases@v0.3.0
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: false
