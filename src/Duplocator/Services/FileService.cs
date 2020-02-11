@@ -26,7 +26,7 @@ namespace Duplocator.Services
         /// <inheritdoc/>
         public string GetFileHash(string filePath, uint? maxByteLength = null)
         {
-            using (var sha1 = SHA1.Create())
+            using (var sha1 = SHA256.Create())
             {
                 using (var stream = File.OpenRead(filePath))
                 {
