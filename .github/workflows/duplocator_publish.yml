@@ -1,4 +1,4 @@
-name: duplocator publish release
+name: duplocator publish
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   publish:
-    name: Publish to nuget
+    name: Publish to NuGet
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
