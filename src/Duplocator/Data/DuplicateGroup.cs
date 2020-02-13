@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Duplocator.Data
 {
     /// <summary>
@@ -17,7 +19,7 @@ namespace Duplocator.Data
         /// <summary>
         /// Gets the duplicates.
         /// </summary>
-        public string[] Duplicates { get; }
+        public IReadOnlyCollection<string> Duplicates { get; }
 
         /// <summary>
         /// Gets the total number of duplicates in the group.
@@ -25,7 +27,7 @@ namespace Duplocator.Data
         /// <remarks>
         /// A total duplicate count of 1 means that this group only contain one element which then is unique.
         /// </remarks>
-        public int TotalDuplicates => Duplicates.Length;
+        public int TotalDuplicates => Duplicates.Count;
 
         /// <summary>
         /// Gets a value indicating if the group contains duplicates.

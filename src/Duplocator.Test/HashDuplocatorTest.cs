@@ -24,7 +24,7 @@ namespace Duplocator.Test
             var target = CreateDuplocator(fileServiceMock.Object);
 
             // Act
-            target.GetDuplicates(new DuplicateGroup(filePaths), maxByteLength).ToArray();
+            target.GetDuplicates(new DuplicateGroup(filePaths), maxByteLength);
 
             // Assert
             fileServiceMock.Verify(service => service.GetFileHash(filePath, maxByteLength), Times.Once());

@@ -19,7 +19,12 @@ namespace Duplocator.Duplocators
 
         protected IEnumerable<DuplicateGroup> GetDuplicates<TKey>(DuplicateGroup duplicateGroup, Func<string, TKey> keyFunc)
         {
-            return FindDuplicates(duplicateGroup.Duplicates, keyFunc)
+            if (duplicateGroup == null)
+            {
+                throw new ArgumentNullException(nameof(duplicateGroup));
+            }
+
+            return FindDuplicates(duplicateGroup.Duplicates.ToArray(), keyFunc)
                 .Select(duplicates => new DuplicateGroup(duplicates))
                 .Where(group => group.ContainsDuplicates)
                 .AsEnumerable();
@@ -27,6 +32,11 @@ namespace Duplocator.Duplocators
 
         private IEnumerable<string[]> FindDuplicates<TKey>(string[] filePaths, Func<string, TKey> keyFunc)
         {
+            if (filePaths == null)
+            {
+                return Enumerable.Empty<string[]>();
+            }
+
             var duplicateGroups = new ConcurrentDictionary<TKey, ConcurrentBag<string>>();
             var syncObject = new object();
 
