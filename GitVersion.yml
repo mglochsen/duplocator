@@ -1,0 +1,13 @@
+assembly-versioning-scheme: MajorMinorPatchTag
+mode: ContinuousDeployment
+branches:
+  master: {}
+  feature:
+    tag: alpha
+  release:
+    tag: beta
+  hotfix:
+    tag: beta
+ignore:
+  sha: []
+merge-message-formats: {}
